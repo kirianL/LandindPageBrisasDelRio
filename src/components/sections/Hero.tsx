@@ -17,142 +17,161 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-[100svh] flex items-end md:items-center overflow-hidden bg-black"
+      className="relative min-h-[100svh] flex items-center overflow-hidden bg-black"
     >
-      {/* Background Image - Optimized for visibility */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image - Immersive & High Contrast */}
+      <div className="absolute inset-0 z-0 scale-105">
         <Image
           src="/images/Hospedaje.jpg"
-          alt="Brisas del Río - Vista panorámica de las cabañas y naturaleza"
+          alt="Brisas del Río - Vista panorámica"
           fill
-          className="object-cover object-[center_30%] md:object-center opacity-80"
+          className="object-cover opacity-60 md:opacity-75 transition-opacity duration-1000"
           priority
           quality={100}
         />
-        {/* Dynamic Orbs for depth */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-900/20 rounded-full blur-[120px] animate-pulse delay-700" />
 
-        {/* Multi-stage gradient for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent md:bg-gradient-to-r md:from-black/80 md:via-black/20 md:to-transparent" />
+        {/* Dynamic Atmospheric Effects */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/60 via-transparent to-black" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black via-black/40 to-transparent hidden md:block" />
+
+        {/* Animated Glows */}
+        <div className="absolute -top-24 -left-24 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[160px] animate-pulse" />
+        <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-emerald-900/10 rounded-full blur-[140px] animate-pulse delay-1000" />
       </div>
 
-      {/* FX Layer */}
-      <LightRays className="z-10 opacity-20" />
-      <Meteors number={15} className="z-10 opacity-50" />
+      {/* FX Overlay */}
+      <LightRays className="z-10 opacity-30 pointer-events-none" />
 
-      {/* Content Container - Flex centered with better overflow protection */}
-      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-end md:justify-center pt-20 pb-8 md:pt-16 md:pb-12 [@media(max-height:750px)]:pt-14 [@media(max-height:750px)]:pb-6">
-        <div className="flex flex-col md:flex-row items-center md:items-center">
-          {/* Main Glass Card - Adaptive Height */}
-          <div className="w-full md:max-w-xl lg:max-w-2xl xl:max-w-3xl lg:translate-y-4">
+      {/* Content Container - Asymmetric & Modern */}
+      <div className="relative z-20 container mx-auto px-6 sm:px-10 lg:px-20 pt-20 pb-32 md:py-0">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-12 lg:gap-20">
+          {/* Main Content Column */}
+          <div className="flex-1 text-center md:text-left space-y-8 max-w-3xl">
+            {/* Meta Row: Logo + Weather */}
             <motion.div
-              initial={{ opacity: 0, y: 30, backdropFilter: "blur(0px)" }}
-              animate={{ opacity: 1, y: 0, backdropFilter: "blur(24px)" }}
-              transition={{
-                duration: 1.2,
-                delay: 0.2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="bg-black/40 border border-white/10 p-5 sm:p-6 md:p-7 lg:p-8 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden text-center md:text-left"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col sm:flex-row items-center md:items-start gap-6"
             >
-              {/* Weather & Logo - Top Row on MD+ */}
-              <div className="mb-4 md:mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                {/* Logo with White Background for Presence */}
-                <div className="relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-white rounded-full flex items-center justify-center p-3 sm:p-4 shadow-[0_0_20px_rgba(255,255,255,0.2)] shrink-0 group-hover:scale-105 transition-transform duration-500">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/images/LogoBrisasDelRio.png"
-                      alt="Logo Brisas del Río"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Weather Widget */}
-                <div className="flex">
-                  <WeatherWidget />
-                </div>
+              <div className="relative w-24 h-24 md:w-32 md:h-32 bg-white rounded-3xl p-4 shadow-2xl shadow-white/5 rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                <Image
+                  src="/images/LogoBrisasDelRio.png"
+                  alt="Logo"
+                  fill
+                  className="object-contain p-2"
+                />
               </div>
 
-              {/* Animated Headline - SEO H1 */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-3 md:mb-3 leading-[1.05] tracking-tight [@media(max-height:750px)]:text-2xl [@media(max-height:750px)]:mb-1">
-                <TextAnimate animation="blurInUp" by="word">
-                  Naturaleza, Sabor y Descanso en Pococí
-                </TextAnimate>
-              </h1>
-
-              {/* Subtitle & Info - Compact & Centered */}
-              <FadeIn delay={0.5}>
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-4 md:mb-5 text-emerald-400 font-bold tracking-wider text-[10px] md:text-xs uppercase [@media(max-height:750px)]:mb-2">
-                  <span className="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/20 border border-emerald-500/10 rounded-full">
-                    <MapPin size={10} />
+              <div className="flex flex-col items-center md:items-start gap-3">
+                <WeatherWidget />
+                <div className="flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
+                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping" />
+                  <span className="text-[10px] md:text-xs font-bold text-white/80 uppercase tracking-widest flex items-center gap-1.5">
+                    <MapPin size={12} className="text-emerald-500" />
                     Jiménez, Costa Rica
                   </span>
-                  <span className="w-1 h-1 bg-white/20 rounded-full hidden sm:block" />
-                  <span className="px-3 py-1 bg-white/5 rounded-full text-white/90">
-                    Restaurante & Cabañas
-                  </span>
                 </div>
-
-                <p className="text-sm md:text-base text-white/70 mb-6 md:mb-7 max-w-lg mx-auto md:mx-0 leading-relaxed [@media(max-height:750px)]:mb-4 [@media(max-height:750px)]:text-xs">
-                  Escápate a un refugio tropical único donde la montaña se une
-                  con el río. Disfruta de hospedaje acogedor y la mejor cocina
-                  criolla de la zona.
-                </p>
-              </FadeIn>
-
-              {/* Actions - Centered on mobile */}
-              <FadeIn delay={0.7}>
-                <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 mb-6 md:mb-8 [@media(max-height:750px)]:mb-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8 h-12 md:h-13 text-sm font-bold shadow-xl shadow-primary/25 rounded-xl md:rounded-2xl group"
-                  >
-                    <Link href="#contacto" className="flex items-center gap-2">
-                      Reservar Mi Estancia
-                      <ArrowRight
-                        size={16}
-                        className="group-hover:translate-x-1 transition-transform"
-                      />
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto border-white/20 bg-white/5 hover:bg-white/10 text-white h-12 md:h-13 px-8 backdrop-blur-sm rounded-xl md:rounded-2xl text-sm"
-                  >
-                    <Link href="#hospedaje">Explorar Cabañas</Link>
-                  </Button>
-                </div>
-              </FadeIn>
-
-              {/* Benefits Mini-Grid - Centered on mobile */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 border-t border-white/5 pt-5 md:pt-6 [@media(max-height:750px)]:pt-3">
-                {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-row md:flex-col items-center justify-center md:items-start gap-2 md:gap-1"
-                  >
-                    <div className="p-1.5 bg-primary/20 rounded-lg shrink-0">
-                      <benefit.icon className="w-4 h-4 text-primary" />
-                    </div>
-                    <div className="flex flex-col text-left md:text-left">
-                      <span className="text-[10px] md:text-xs font-bold text-white leading-tight">
-                        {benefit.title}
-                      </span>
-                      <span className="text-[8px] text-white/40 hidden lg:block uppercase tracking-tighter">
-                        {benefit.description.split(" ")[0]}
-                      </span>
-                    </div>
-                  </div>
-                ))}
               </div>
             </motion.div>
+
+            {/* Headline with High Impact */}
+            <div className="space-y-4">
+              <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black text-white leading-[0.9] tracking-tighter">
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  className="inline-block"
+                >
+                  Naturaleza, Sabor y Vida.
+                </TextAnimate>
+              </h1>
+              <FadeIn delay={0.4}>
+                <p className="text-lg md:text-xl text-white/60 max-w-xl leading-relaxed font-medium">
+                  Un santuario tropical donde el murmullo del río acompaña tus
+                  mejores momentos. Hospedaje único y gastronomía criolla de
+                  autor.
+                </p>
+              </FadeIn>
+            </div>
+
+            {/* Primary Actions */}
+            <FadeIn delay={0.6}>
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <Button
+                  asChild
+                  size="xl"
+                  className="w-full sm:w-auto h-16 px-10 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-2xl shadow-2xl shadow-primary/40 group transition-all active:scale-95"
+                >
+                  <Link href="#contacto" className="flex items-center gap-3">
+                    Reservar Mi Estancia
+                    <ArrowRight
+                      size={20}
+                      className="group-hover:translate-x-2 transition-transform"
+                    />
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="xl"
+                  className="w-full sm:w-auto h-16 px-10 text-white hover:bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm transition-all active:scale-95"
+                >
+                  <Link href="#hospedaje">Explorar Cabañas</Link>
+                </Button>
+              </div>
+            </FadeIn>
+
+            {/* Secondary Features Mini-Grid */}
+            <div className="hidden lg:grid grid-cols-4 gap-6 pt-12 border-t border-white/5">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  className="flex flex-col gap-3 group"
+                >
+                  <div className="w-10 h-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl group-hover:bg-primary/20 group-hover:border-primary/50 transition-colors">
+                    <benefit.icon className="w-5 h-5 text-white/60 group-hover:text-primary transition-colors" />
+                  </div>
+                  <span className="text-xs font-bold text-white/40 group-hover:text-white/80 transition-colors uppercase tracking-wider">
+                    {benefit.title}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Complementary Visual Column (Mobile Hidden / Tablet+ Floating) */}
+          <div className="hidden md:flex flex-1 justify-end items-center relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: -2 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="relative w-80 h-[500px] lg:w-96 lg:h-[600px] rounded-[3rem] overflow-hidden border border-white/20 shadow-2xl skew-y-2 hover:skew-y-0 transition-transform duration-700"
+            >
+              <Image
+                src="/images/Restaurante.jpg"
+                alt="Restaurante Brisas del Río"
+                fill
+                className="object-cover scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+              <div className="absolute bottom-10 left-10 right-10">
+                <p className="text-white text-sm font-bold uppercase tracking-widest mb-2 opacity-50">
+                  Sabor Local
+                </p>
+                <div className="h-px w-12 bg-primary mb-4" />
+                <h3 className="text-white text-2xl font-black">
+                  Gastronomía Criolla de Autor
+                </h3>
+              </div>
+            </motion.div>
+
+            {/* Visual Balance Element */}
+            <div className="absolute -top-10 -right-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
           </div>
         </div>
       </div>
